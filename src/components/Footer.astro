@@ -1,0 +1,85 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/logo.jpeg" alt="Khipu AI" class="footer-logo" />
+        <span class="footer-name">Khipu AI</span>
+      </div>
+      <div class="footer-links">
+        <a href="/privacy">Política de privacidad</a>
+        <a href="/terms">Términos de uso</a>
+        <a href="/download">Descargar APK</a>
+        <a href="mailto:khipuAI@gmail.com">khipuAI@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Khipu AI. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-text);
+    color: white;
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .footer-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.15s ease;
+  }
+
+  .footer-links a:hover {
+    color: white;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 640px) {
+    .footer-top {
+      flex-direction: column;
+      text-align: center;
+    }
+    .footer-links {
+      justify-content: center;
+    }
+  }
+</style>

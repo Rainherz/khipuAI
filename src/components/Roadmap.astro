@@ -1,0 +1,252 @@
+<section id="roadmap" class="section roadmap">
+  <div class="container">
+    <h2 class="section-title">Ruta de desarrollo</h2>
+    <p class="section-subtitle">Lo que ya hemos logrado y hacia dónde nos dirigimos con Khipu AI.</p>
+    
+    <div class="timeline">
+      <!-- Step 1: Completado -->
+      <div class="timeline-item completed">
+        <div class="timeline-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="timeline-content">
+          <div class="status-badge">Lanzado — Julio 2026</div>
+          <h3>Lanzamiento Inicial</h3>
+          <ul class="timeline-features">
+            <li>App funcional con subida inteligente de apuntes y OCR.</li>
+            <li>Flashcards SM-2 de repetición espaciada.</li>
+            <li>Chat tutor IA integrado.</li>
+            <li>Modo examen, grafo de conocimiento interactivo y guía de estudio.</li>
+            <li>Distribución directa via APK.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Step 2: En progreso -->
+      <div class="timeline-item active">
+        <div class="timeline-icon">
+          <svg class="spinning-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        </div>
+        <div class="timeline-content">
+          <div class="status-badge progress">Siguiente paso</div>
+          <h3>Próximas Mejoras</h3>
+          <ul class="timeline-features">
+            <li>Google Sign-In para sincronizar cuentas fácilmente.</li>
+            <li>Notificaciones push para recordatorios de repaso oportunos.</li>
+            <li>Soporte de múltiples modelos de IA (fallback automático con Gemini/Groq).</li>
+            <li>Optimizaciones en la precisión y extracción de conceptos clave.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Step 3: Futuro -->
+      <div class="timeline-item future">
+        <div class="timeline-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.886H3.877l4.97 3.61L6.935 18.38 12 14.77l5.065 3.61-1.912-4.884 4.97-3.61h-6.211L12 3z"/></svg>
+        </div>
+        <div class="timeline-content">
+          <div class="status-badge future">El Futuro</div>
+          <h3>Visión a Largo Plazo</h3>
+          <ul class="timeline-features">
+            <li>Sistema de suscripción PRO integrada con Stripe.</li>
+            <li>Publicación oficial en Google Play Store.</li>
+            <li>Desarrollo de la versión nativa de iOS.</li>
+            <li>Plataforma comunitaria de mazos de estudio compartidos.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .roadmap {
+    background: var(--color-surface);
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
+
+  /* Vertical line */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2rem;
+    width: 3px;
+    background: linear-gradient(180deg, var(--color-success) 30%, var(--color-primary) 70%, rgba(124, 58, 237, 0.1) 100%);
+    border-radius: 99px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 5rem;
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Icons */
+  .timeline-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+    border: 2px solid #e2e8f0;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Content Cards */
+  .timeline-content {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  }
+
+  .timeline-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(124, 58, 237, 0.08);
+  }
+
+  /* Badge styling */
+  .status-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Styles by status */
+  .timeline-item.completed .timeline-icon {
+    background: var(--color-success);
+    color: white;
+    border-color: var(--color-success);
+  }
+
+  .timeline-item.completed .status-badge {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+  }
+
+  .timeline-item.active .timeline-icon {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+  }
+
+  .timeline-item.active .status-badge {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+  }
+
+  .timeline-item.future .timeline-icon {
+    background: white;
+    color: var(--color-text-muted);
+    border-color: #cbd5e1;
+  }
+
+  .timeline-item.future .status-badge {
+    background: #f1f5f9;
+    color: var(--color-text-muted);
+  }
+
+  .timeline-content h3 {
+    font-family: var(--font-title);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .timeline-features {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .timeline-features li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .timeline-features li::before {
+    content: "•";
+    position: absolute;
+    left: 0.25rem;
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .timeline-item.completed .timeline-features li::before {
+    color: var(--color-success);
+  }
+
+  /* Animations */
+  .spinning-icon {
+    animation: spin 3s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .timeline::before {
+      left: 1.5rem;
+    }
+    .timeline-item {
+      padding-left: 3.5rem;
+    }
+    .timeline-icon {
+      left: 0.5rem;
+      width: 2rem;
+      height: 2rem;
+    }
+    .timeline-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+</style>

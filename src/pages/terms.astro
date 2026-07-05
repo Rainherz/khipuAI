@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Términos de uso — Khipu AI"
+  description="Términos y condiciones de uso de la aplicación y la landing page de Khipu AI. Lee las reglas de nuestro servicio y cuentas de usuario."
+>
+  <Header />
+  <main>
+    <section class="section legal">
+      <div class="container legal-inner">
+        <h1 class="legal-title">Términos de uso</h1>
+        <p class="legal-updated">Última actualización: 5 de julio de 2026</p>
+
+        <h2>1. Uso de la app</h2>
+        <p>Khipu AI es una aplicación para estudiantes universitarios. Al usarla, aceptas que eres responsable del contenido que subes y de cumplir con las leyes de tu país.</p>
+
+        <h2>2. Cuenta y seguridad</h2>
+        <p>Debes mantener la seguridad de tu cuenta. No compartas tus credenciales de acceso con terceros.</p>
+
+        <h2>3. Propiedad intelectual</h2>
+        <p>Conservas todos los derechos sobre tus apuntes y contenido. Nosotros solo los procesamos para ofrecerte el servicio.</p>
+
+        <h2>4. Limitaciones</h2>
+        <p>El plan FREE tiene límites descritos en la landing page. El plan PRO se activa manualmente hasta que se implemente el sistema de pagos.</p>
+
+        <h2>5. Cambios en el servicio</h2>
+        <p>Podemos actualizar estas condiciones y las funcionalidades de la app. Te notificaremos sobre cambios importantes.</p>
+
+        <h2>6. Contacto</h2>
+        <p>Para dudas sobre estos términos, escríbenos a <a href="mailto:khipuAI@gmail.com">khipuAI@gmail.com</a>.</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal {
+    background: var(--color-surface);
+    min-height: 70vh;
+  }
+
+  .legal-inner {
+    max-width: 800px;
+    background: white;
+    border-radius: 1.5rem;
+    padding: 3rem;
+  }
+
+  .legal-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-updated {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .legal-inner h2 {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .legal-inner p {
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .legal-inner a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+</style>

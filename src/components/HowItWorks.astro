@@ -1,0 +1,88 @@
+<section id="como-funciona" class="section how-it-works">
+  <div class="container">
+    <h2 class="section-title">Cómo funciona</h2>
+    <p class="section-subtitle">Estudiar con Khipu AI es tan simple como subir tus apuntes. La IA hace el resto.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <h3 class="step-title">1. Sube tu apunte</h3>
+        <p class="step-text">Sube PDFs o fotos de tus clases. El OCR extrae el texto automáticamente.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </div>
+        <h3 class="step-title">2. La IA extrae conceptos</h3>
+        <p class="step-text">La inteligencia artificial identifica ideas clave y genera definiciones claras.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3 class="step-title">3. Repasa con SM-2</h3>
+        <p class="step-text">Repasa con flashcards y chat tutor. El algoritmo programa cada revisión en el momento óptimo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    background: white;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .step {
+    text-align: center;
+    padding: 2rem;
+    background: var(--color-surface);
+    border-radius: 1.5rem;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+  }
+
+  .step:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
+    background: white;
+    border-color: rgba(124, 58, 237, 0.1);
+  }
+
+  .step-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 1rem;
+    background: white;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+  }
+
+  .step-title {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-text {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

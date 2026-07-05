@@ -1,0 +1,203 @@
+<section id="precios" class="section pricing">
+  <div class="container">
+    <h2 class="section-title">Planes y precios</h2>
+    <p class="section-subtitle">Empieza gratis. Cuando estés listo, el plan PRO desbloquea todo sin límites.</p>
+    <div class="pricing-grid">
+      <div class="plan">
+        <h3 class="plan-name">FREE</h3>
+        <div class="plan-price">Gratis</div>
+        <p class="plan-desc">Perfecto para empezar y probar todo el potencial de Khipu AI.</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> 30 subidas de archivos/mes</li>
+          <li><span class="check">✓</span> 20 mensajes al tutor/día</li>
+          <li><span class="check">✓</span> Hasta 3 cursos</li>
+          <li><span class="check">✓</span> 2 exámenes generados</li>
+          <li><span class="check">✓</span> Flashcards SM-2 ilimitadas</li>
+          <li><span class="check">✓</span> Grafo de conocimiento ilimitado</li>
+          <li><span class="check">✓</span> Guía de estudio ilimitada</li>
+        </ul>
+        <a href="#download" class="btn btn-secondary btn-large" data-track="click_plan_free">Comenzar gratis</a>
+      </div>
+      <div class="plan plan-pro">
+        <div class="pro-badge">Próximamente</div>
+        <h3 class="plan-name">PRO</h3>
+        <div class="plan-price">--</div>
+        <p class="plan-desc">Para estudiantes que quieren sacar el máximo provecho sin restricciones.</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Subidas de archivos ilimitadas</li>
+          <li><span class="check">✓</span> Mensajes al tutor ilimitados</li>
+          <li><span class="check">✓</span> Cursos ilimitados</li>
+          <li><span class="check">✓</span> Exámenes generados ilimitados</li>
+          <li><span class="check">✓</span> Flashcards SM-2 ilimitadas</li>
+          <li><span class="check">✓</span> Grafo de conocimiento ilimitado</li>
+          <li><span class="check">✓</span> Guía de estudio ilimitada</li>
+        </ul>
+        <a href="#newsletter" class="btn btn-primary btn-large pricing-pro-cta" data-track="click_plan_pro">Saber más PRO</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Dynamic CTA UX: Scroll & highlight newsletter email input
+  const proCta = document.querySelector('.pricing-pro-cta');
+  
+  if (proCta) {
+    proCta.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector('#newsletter');
+      const input = document.querySelector('#newsletter-email') as HTMLInputElement;
+      
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        
+        // Wait for smooth scroll to finish, then focus & animate input
+        setTimeout(() => {
+          if (input) {
+            input.focus();
+            input.classList.add('pulse-highlight');
+            
+            // Remove highlight class after animation completes
+            setTimeout(() => {
+              input.classList.remove('pulse-highlight');
+            }, 1500);
+          }
+        }, 800);
+      }
+    });
+  }
+</script>
+
+<style>
+  .pricing {
+    background: white;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .plan {
+    background: var(--color-surface);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+  }
+
+  .plan:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  }
+
+  .plan-pro {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    position: relative;
+    border: 1px solid var(--color-primary-light);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+  }
+
+  .plan-pro:hover {
+    box-shadow: 0 25px 50px rgba(124, 58, 237, 0.35);
+  }
+
+  .pro-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    animation: pulse 2s infinite;
+  }
+
+  .plan-name {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-price {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-desc {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .plan-pro .plan-desc {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .plan-features {
+    list-style: none;
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .check {
+    color: var(--color-success);
+    font-weight: 700;
+  }
+
+  .plan-pro .check {
+    color: #a7f3d0;
+  }
+
+  .plan-pro .btn-primary {
+    background: white;
+    color: var(--color-primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .plan-pro .btn-primary:hover {
+    background: #f8fafc;
+    color: var(--color-primary-dark);
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

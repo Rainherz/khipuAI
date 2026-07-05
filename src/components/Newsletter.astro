@@ -1,0 +1,296 @@
+<section id="newsletter" class="section newsletter">
+  <div class="container">
+    <div class="newsletter-card">
+      <div class="newsletter-content">
+        <h2 class="newsletter-title">¿Quieres acceso PRO?</h2>
+        <p class="newsletter-text">Déjanos tu correo y te avisaremos cuando el plan PRO esté disponible.</p>
+        
+        <form class="newsletter-form" id="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input 
+            type="email" 
+            name="email" 
+            id="newsletter-email" 
+            placeholder="tu@email.com" 
+            required 
+            class="newsletter-input" 
+            autocomplete="email" 
+          />
+          <button type="submit" class="btn btn-primary newsletter-btn" id="newsletter-submit-btn">
+            <span class="btn-text">Suscribirme</span>
+            <span class="btn-loader" style="display: none;">
+              <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+              </svg>
+              Enviando...
+            </span>
+          </button>
+        </form>
+
+        <div id="newsletter-success" class="newsletter-success-msg" style="display: none;">
+          <div class="success-icon">🎉</div>
+          <h3>¡Te has registrado con éxito!</h3>
+          <p>Gracias por tu interés en Khipu AI PRO. Te avisaremos en cuanto esté disponible.</p>
+        </div>
+
+        <div id="newsletter-error" class="newsletter-error-msg" style="display: none;">
+          <p>Ocurrió un error. Por favor, verifica tu correo e inténtalo de nuevo.</p>
+        </div>
+
+        <p class="newsletter-note">Usamos Formspree. Reemplaza <code>YOUR_FORM_ID</code> en el código con tu ID real de Formspree.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
+  const emailInput = document.getElementById('newsletter-email') as HTMLInputElement;
+  const submitBtn = document.getElementById('newsletter-submit-btn') as HTMLButtonElement;
+  const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement;
+  const btnLoader = submitBtn?.querySelector('.btn-loader') as HTMLElement;
+  const successDiv = document.getElementById('newsletter-success') as HTMLElement;
+  const errorDiv = document.getElementById('newsletter-error') as HTMLElement;
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const action = form.action;
+
+      // Reset states
+      if (errorDiv) errorDiv.style.display = 'none';
+      
+      // Loading state
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnLoader) btnLoader.style.display = 'inline-flex';
+
+      // Simular éxito local para pruebas si no se ha configurado el ID real
+      if (action.includes('YOUR_FORM_ID')) {
+        console.warn('Formspree YOUR_FORM_ID no configurado. Simulando envío exitoso localmente.');
+        setTimeout(() => {
+          if (form) form.style.display = 'none';
+          if (successDiv) successDiv.style.display = 'block';
+        }, 1200);
+        return;
+      }
+
+      try {
+        const response = await fetch(action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          if (form) form.style.display = 'none';
+          if (successDiv) successDiv.style.display = 'block';
+        } else {
+          throw new Error('Formspree submit failed');
+        }
+      } catch (err) {
+        console.error('Error submitting form:', err);
+        if (errorDiv) errorDiv.style.display = 'block';
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.style.display = 'inline-block';
+        if (btnLoader) btnLoader.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+<style>
+  .newsletter {
+    background: white;
+  }
+
+  .newsletter-card {
+    max-width: 650px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 1.5rem;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15);
+  }
+
+  .newsletter-title {
+    font-family: var(--font-title);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .newsletter-text {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    min-width: 240px;
+    padding: 0.875rem 1.25rem;
+    border-radius: 0.75rem;
+    border: none;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .newsletter-input:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .newsletter-input.pulse-highlight {
+    animation: inputPulse 1.5s ease-in-out;
+  }
+
+  @keyframes inputPulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    30% {
+      transform: scale(1.04);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      outline: 3px solid rgba(255, 255, 255, 0.9);
+    }
+    70% {
+      transform: scale(1.04);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      outline: 3px solid rgba(255, 255, 255, 0.9);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  .newsletter-btn {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .newsletter-btn:hover {
+    background: #f3f4f6;
+  }
+
+  .newsletter-btn:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  .btn-loader {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .spinner {
+    animation: rotate 2s linear infinite;
+    width: 20px;
+    height: 20px;
+  }
+
+  .spinner .path {
+    stroke: var(--color-primary);
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  .newsletter-success-msg {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  .success-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-success-msg h3 {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-success-msg p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .newsletter-error-msg {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid var(--color-error);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .newsletter-note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .newsletter-note code {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .newsletter-card {
+      padding: 2rem 1.5rem;
+    }
+    .newsletter-form {
+      flex-direction: column;
+    }
+    .newsletter-input {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Política de privacidad — Khipu AI"
+  description="Política de privacidad de la aplicación Khipu AI. Conoce cómo tratamos tus apuntes, correos y datos personales de forma segura."
+>
+  <Header />
+  <main>
+    <section class="section legal">
+      <div class="container legal-inner">
+        <h1 class="legal-title">Política de privacidad</h1>
+        <p class="legal-updated">Última actualización: 5 de julio de 2026</p>
+
+        <h2>1. Datos que recolectamos</h2>
+        <p>Recolectamos tu correo electrónico, nombre y los apuntes que subes a la app para generar flashcards y conceptos.</p>
+
+        <h2>2. Cómo usamos tus datos</h2>
+        <p>Usamos tus datos para procesar tus apuntes con IA, programar repasos, generar exámenes y mejorar el servicio.</p>
+
+        <h2>3. Almacenamiento y seguridad</h2>
+        <p>Tus apuntes se almacenan en servidores en la nube con cifrado. No compartimos tus apuntes ni datos personales con terceros.</p>
+
+        <h2>4. Tus derechos</h2>
+        <p>Puedes solicitar la eliminación de tu cuenta y todos tus datos en cualquier momento escribiendo a <a href="mailto:khipuAI@gmail.com">khipuAI@gmail.com</a>.</p>
+
+        <h2>5. Contacto</h2>
+        <p>Para cualquier duda sobre privacidad, escríbenos a <a href="mailto:khipuAI@gmail.com">khipuAI@gmail.com</a>.</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal {
+    background: var(--color-surface);
+    min-height: 70vh;
+  }
+
+  .legal-inner {
+    max-width: 800px;
+    background: white;
+    border-radius: 1.5rem;
+    padding: 3rem;
+  }
+
+  .legal-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-updated {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .legal-inner h2 {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .legal-inner p {
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .legal-inner a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+</style>

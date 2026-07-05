@@ -1,0 +1,677 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1 class="hero-title">Sube tus apuntes. La IA los convierte en flashcards.</h1>
+      <p class="hero-subtitle">
+        Khipu AI extrae automáticamente los conceptos clave de tus PDFs y fotos, y programa repasos inteligentes con SM-2 para que nunca olvides lo que estudiaste.
+      </p>
+      <div class="hero-cta">
+        <a href="/download" class="btn btn-primary btn-large" data-track="click_download">Descargar APK</a>
+        <a href="#como-funciona" class="btn btn-secondary btn-large">Ver cómo funciona</a>
+      </div>
+    </div>
+    
+    <div class="hero-mockup">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <!-- Screen: Planner (Default Active) -->
+          <div class="phone-screen-content active" id="screen-planner">
+            <div class="app-header">
+              <span class="app-title">Khipu AI</span>
+              <span class="app-badge">Pro</span>
+            </div>
+            
+            <div class="phone-scrollable">
+              <div class="welcome-card">
+                <span class="user-greeting">Hola, Estudiante 👋</span>
+                <h3>Tu agenda de hoy</h3>
+                <div class="study-progress">
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 60%"></div>
+                  </div>
+                  <span class="progress-label">6/10 repasados</span>
+                </div>
+              </div>
+
+              <div class="planner-grid">
+                <div class="planner-card">
+                  <span class="planner-stat">🔥 5</span>
+                  <span class="planner-subtitle">Racha</span>
+                </div>
+                <div class="planner-card">
+                  <span class="planner-stat">12</span>
+                  <span class="planner-subtitle">Pendientes</span>
+                </div>
+              </div>
+
+              <button class="mock-btn mock-btn-primary trigger-flashcards">
+                Comenzar Repaso
+              </button>
+            </div>
+          </div>
+
+          <!-- Screen: Flashcards -->
+          <div class="phone-screen-content" id="screen-flashcards">
+            <div class="app-header">
+              <span class="app-title">Repaso Diario</span>
+            </div>
+            <div class="phone-scrollable">
+              <div class="flashcard-container">
+                <div class="flashcard" id="interactive-card">
+                  <div class="flashcard-inner">
+                    <!-- Front -->
+                    <div class="flashcard-front">
+                      <span class="card-tag">Pregunta / Concepto</span>
+                      <h3 class="card-q">Repetición Espaciada</h3>
+                      <p class="click-hint">Toca la tarjeta para voltear</p>
+                    </div>
+                    <!-- Back -->
+                    <div class="flashcard-back">
+                      <span class="card-tag">Definición (SM-2)</span>
+                      <p class="definition">Técnica de aprendizaje que programa repasos en intervalos de tiempo crecientes según tu nivel de recuerdo.</p>
+                      <div class="rating-buttons">
+                        <span class="rating-title">¿Qué tan bien lo sabías?</span>
+                        <div class="rating-row">
+                          <button class="rate-btn">1</button>
+                          <button class="rate-btn">2</button>
+                          <button class="rate-btn font-bold">3</button>
+                          <button class="rate-btn">4</button>
+                          <button class="rate-btn">5</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen: Tutor IA -->
+          <div class="phone-screen-content" id="screen-tutor">
+            <div class="app-header">
+              <span class="app-title">Tutor IA</span>
+            </div>
+            <div class="phone-scrollable chat-container">
+              <div class="chat-bubbles">
+                <div class="chat-bubble user">
+                  ¿Me explicas el algoritmo SM-2 de Khipu?
+                </div>
+                <div class="chat-bubble assistant">
+                  ¡Claro! 🧠 Calcula el momento óptimo para mostrarte la flashcard justo antes de que la olvides, adaptándose a tu nota del 1 al 5.
+                </div>
+              </div>
+              <div class="mock-input-area">
+                <span class="mock-placeholder">Preguntar algo más...</span>
+                <span class="send-icon">➔</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Bottom Navigation Bar -->
+          <div class="phone-navbar">
+            <button class="nav-item active" data-target="screen-planner">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>Planner</span>
+            </button>
+            <button class="nav-item" data-target="screen-flashcards">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M21 12H3M12 3v18"/></svg>
+              <span>Estudiar</span>
+            </button>
+            <button class="nav-item" data-target="screen-tutor">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Tutor IA</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Mockup Tab Switching
+  const navItems = document.querySelectorAll('.phone-navbar .nav-item');
+  const screens = document.querySelectorAll('.phone-screen-content');
+  const triggerBtn = document.querySelector('.trigger-flashcards');
+  const card = document.getElementById('interactive-card');
+  const rateBtns = document.querySelectorAll('.rate-btn');
+
+  function switchScreen(targetId: string) {
+    screens.forEach(screen => {
+      screen.classList.remove('active');
+    });
+    navItems.forEach(item => {
+      item.classList.remove('active');
+    });
+
+    const targetScreen = document.getElementById(targetId);
+    const targetNavItem = document.querySelector(`[data-target="${targetId}"]`);
+    
+    if (targetScreen) targetScreen.classList.add('active');
+    if (targetNavItem) targetNavItem.classList.add('active');
+  }
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.getAttribute('data-target');
+      if (target) switchScreen(target);
+    });
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', () => {
+      switchScreen('screen-flashcards');
+    });
+  }
+
+  // Interactive Card Flip
+  if (card) {
+    card.addEventListener('click', (e) => {
+      // Evitar voltear si se hace clic en botones de calificación
+      if ((e.target as HTMLElement).closest('.rating-buttons')) {
+        return;
+      }
+      card.classList.toggle('flipped');
+    });
+  }
+
+  // Simulate Rating Click
+  rateBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      rateBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      
+      // Auto flip back and show next simulated concept after 1 second
+      setTimeout(() => {
+        if (card) {
+          card.classList.remove('flipped');
+          // Cambiar texto de pregunta y respuesta para simular avance
+          setTimeout(() => {
+            const questionElement = card.querySelector('.card-q');
+            const definitionElement = card.querySelector('.definition');
+            
+            if (questionElement && definitionElement) {
+              if (questionElement.textContent === 'Repetición Espaciada') {
+                questionElement.textContent = 'Algoritmo SM-2';
+                definitionElement.textContent = 'Algoritmo que calcula el intervalo de repaso óptimo basado en la curva del olvido y tu autoevaluación.';
+              } else {
+                questionElement.textContent = 'Repetición Espaciada';
+                definitionElement.textContent = 'Técnica de aprendizaje que programa repasos en intervalos de tiempo crecientes según tu nivel de recuerdo.';
+              }
+            }
+            rateBtns.forEach(b => b.classList.remove('selected'));
+          }, 400);
+        }
+      }, 1000);
+    });
+  });
+</script>
+
+<style>
+  .hero {
+    padding: 5rem 0 4rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 3.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    max-width: 540px;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-mockup {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Phone Frame */
+  .phone {
+    width: 290px;
+    height: 580px;
+    background: #0f172a;
+    border-radius: 2.75rem;
+    padding: 0.75rem;
+    box-shadow: 0 25px 60px rgba(124, 58, 237, 0.25), 
+                0 10px 25px rgba(0, 0, 0, 0.15),
+                inset 0 0 4px rgba(255,255,255,0.2);
+    position: relative;
+    user-select: none;
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 24px;
+    background: #0f172a;
+    border-radius: 0 0 14px 14px;
+    z-index: 20;
+  }
+
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    background: var(--color-surface);
+    border-radius: 2rem;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  /* Screen contents */
+  .phone-screen-content {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    height: calc(100% - 50px); /* Discount bottom navbar */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .phone-screen-content.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .app-header {
+    background: white;
+    padding: 1.75rem 1rem 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .app-title {
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+  }
+
+  .app-badge {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 99px;
+  }
+
+  .phone-scrollable {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    scrollbar-width: none;
+  }
+
+  .phone-scrollable::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Elements inside Planner screen */
+  .welcome-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+  }
+
+  .user-greeting {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .welcome-card h3 {
+    font-size: 1rem;
+    margin: 0.25rem 0 0.5rem;
+    color: var(--color-text);
+  }
+
+  .study-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--color-success);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  .progress-label {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+  }
+
+  .planner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .planner-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .planner-stat {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .planner-subtitle {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+  }
+
+  .mock-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .mock-btn-primary {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.2);
+  }
+
+  .mock-btn-primary:hover {
+    background: var(--color-primary-dark);
+  }
+
+  /* Flashcards Screen Styles */
+  .flashcard-container {
+    perspective: 1000px;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .flashcard.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .flashcard-front {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .flashcard-back {
+    background: #fdfefe;
+    border: 1px solid var(--color-primary-light);
+    transform: rotateY(180deg);
+  }
+
+  .card-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    font-weight: 700;
+  }
+
+  .flashcard h3 {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin: auto 0;
+  }
+
+  .definition {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    text-align: center;
+    margin: auto 0;
+  }
+
+  .click-hint {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .rating-buttons {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-align: center;
+  }
+
+  .rating-title {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .rating-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .rate-btn {
+    flex: 1;
+    height: 26px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .rate-btn:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+  }
+
+  .rate-btn.selected {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  /* Chat Tutor Screen Styles */
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-bottom: 0.5rem;
+  }
+
+  .chat-bubbles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .chat-bubble {
+    max-width: 85%;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .chat-bubble.user {
+    align-self: flex-end;
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    border-bottom-right-radius: 0;
+  }
+
+  .chat-bubble.assistant {
+    align-self: flex-start;
+    background: white;
+    color: var(--color-text);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-bottom-left-radius: 0;
+  }
+
+  .mock-input-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 0.5rem 0.75rem;
+    border-radius: 99px;
+    margin-top: auto;
+  }
+
+  .mock-placeholder {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .send-icon {
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    cursor: pointer;
+  }
+
+  /* Phone Bottom Nav */
+  .phone-navbar {
+    height: 50px;
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    z-index: 10;
+  }
+
+  .nav-item {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    font-size: 0.6rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .nav-item.active {
+    color: var(--color-primary);
+  }
+
+  .nav-item svg {
+    transition: transform 0.2s;
+  }
+
+  .nav-item:hover svg {
+    transform: scale(1.1);
+  }
+
+  /* Responsiveness */
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3rem;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta {
+      justify-content: center;
+    }
+  }
+</style>

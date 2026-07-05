@@ -1,0 +1,86 @@
+<section id="faq" class="section faq">
+  <div class="container">
+    <h2 class="section-title">Preguntas frecuentes</h2>
+    <p class="section-subtitle">Todo lo que necesitas saber antes de empezar.</p>
+    <div class="faq-list">
+      <details class="faq-item" name="faq">
+        <summary class="faq-question">¿Qué es SM-2?</summary>
+        <p class="faq-answer">Es un algoritmo de repetición espaciada que programa los repasos justo cuando estás por olvidar un concepto. Si lo recuerdas bien, el intervalo se alarga. Si lo olvidas, el intervalo se acorta.</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary class="faq-question">¿Necesito tarjeta de crédito?</summary>
+        <p class="faq-answer">No. El plan FREE es completamente gratuito sin necesidad de tarjeta.</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary class="faq-question">¿Puedo subir cualquier tipo de archivo?</summary>
+        <p class="faq-answer">Sí, PDF e imágenes (JPG, PNG). La IA extrae el texto mediante OCR.</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary class="faq-question">¿Cómo se consigue el plan PRO?</summary>
+        <p class="faq-answer">Por ahora el plan PRO se activa manualmente. Escríbenos a <a href="mailto:khipuAI@gmail.com">khipuAI@gmail.com</a> para más información.</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary class="faq-question">¿Dónde se almacenan mis datos?</summary>
+        <p class="faq-answer">En servidores en la nube con cifrado. No compartimos tus apuntes con terceros.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: var(--color-surface);
+  }
+
+  .faq-list {
+    max-width: 750px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .faq-question {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: '−';
+  }
+
+  .faq-answer {
+    color: var(--color-text-muted);
+    margin-top: 0.75rem;
+    padding-right: 2rem;
+  }
+
+  .faq-answer a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+</style>
