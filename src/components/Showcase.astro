@@ -1,0 +1,498 @@
+<section id="capturas" class="section showcase">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">La aplicación por dentro</h2>
+      <p class="section-subtitle">
+        Una interfaz moderna, intuitiva y optimizada para el aprendizaje efectivo. Explora las pantallas principales de Khipu AI.
+      </p>
+    </div>
+
+    <div class="showcase-content">
+      <!-- Left side: Interactive Tabs / Control Panel -->
+      <div class="showcase-controls">
+        <button class="showcase-tab active" data-tab="planner">
+          <div class="tab-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="tab-meta">
+            <span class="tab-title">Planner Diario</span>
+            <span class="tab-description">Visualiza tu racha, tus objetivos del día y el progreso general de tus asignaturas.</span>
+          </div>
+        </button>
+
+        <button class="showcase-tab" data-tab="ocr">
+          <div class="tab-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="tab-meta">
+            <span class="tab-title">Subida OCR e IA (3 pasos)</span>
+            <span class="tab-description">Sube tus apuntes (PDF/fotos) y mira cómo la IA extrae conceptos clave en tiempo real.</span>
+          </div>
+          <!-- Mini Sub-steps for OCR -->
+          <div class="tab-substeps">
+            <span class="substep active" data-ocr-step="1">1. Elegir archivo</span>
+            <span class="substep" data-ocr-step="2">2. Procesando</span>
+            <span class="substep" data-ocr-step="3">3. Conceptos</span>
+          </div>
+        </button>
+
+        <button class="showcase-tab" data-tab="chat">
+          <div class="tab-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="tab-meta">
+            <span class="tab-title">Repaso y Tutor IA</span>
+            <span class="tab-description">Estudia tus flashcards programadas y resuelve tus dudas al instante con el chat integrado.</span>
+          </div>
+        </button>
+
+        <button class="showcase-tab" data-tab="grafos">
+          <div class="tab-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </div>
+          <div class="tab-meta">
+            <span class="tab-title">Grafo de Relaciones</span>
+            <span class="tab-description">Visualiza un mapa interactivo con la estructura mental de tus cursos y cómo dependen entre sí.</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Right side: Beautiful Phone Frame Frame -->
+      <div class="showcase-visual">
+        <div class="phone-wrapper">
+          <div class="phone-glow"></div>
+          <div class="phone-case">
+            <div class="phone-button power"></div>
+            <div class="phone-button volume-up"></div>
+            <div class="phone-button volume-down"></div>
+            <div class="phone-camera-notch"></div>
+            <div class="phone-display">
+              <!-- Custom status bar to overlay emulator status bar -->
+              <div class="phone-status-bar">
+                <span class="status-time">09:41</span>
+                <div class="status-icons">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/></svg>
+                </div>
+              </div>
+              <!-- Active Screenshot Container -->
+              <div class="phone-screenshot-wrapper">
+                <img id="showcase-img-planner" class="screenshot-img active" src="/images/home.jpeg" alt="Khipu AI Planner" loading="lazy" />
+                <img id="showcase-img-ocr-1" class="screenshot-img" src="/images/ocr-1.jpeg" alt="Subida de apuntes" loading="lazy" />
+                <img id="showcase-img-ocr-2" class="screenshot-img" src="/images/ocr-2.jpeg" alt="Procesamiento OCR" loading="lazy" />
+                <img id="showcase-img-ocr-3" class="screenshot-img" src="/images/ocr-3.jpeg" alt="Conceptos extraídos por IA" loading="lazy" />
+                <img id="showcase-img-chat" class="screenshot-img" src="/images/chat.jpeg" alt="Repaso con Tutor IA" loading="lazy" />
+                <img id="showcase-img-grafos" class="screenshot-img" src="/images/grafos.jpeg" alt="Grafo de conocimiento interactivo" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Update time in phone status bar
+  const timeElements = document.querySelectorAll('.status-time');
+  function updatePhoneTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    timeElements.forEach(el => {
+      el.textContent = `${hours}:${minutes}`;
+    });
+  }
+  updatePhoneTime();
+  setInterval(updatePhoneTime, 60000);
+
+  const tabs = document.querySelectorAll('.showcase-tab');
+  const screenshotImages = document.querySelectorAll('.screenshot-img');
+  const ocrSubsteps = document.querySelectorAll('[data-ocr-step]');
+  let ocrSubstepInterval: number | null = null;
+  let currentOcrStepIndex = 1;
+
+  function resetImages() {
+    screenshotImages.forEach(img => img.classList.remove('active'));
+  }
+
+  function activateImage(id: string) {
+    resetImages();
+    const activeImg = document.getElementById(id);
+    if (activeImg) {
+      activeImg.classList.add('active');
+    }
+  }
+
+  function handleTabClick(tab: Element) {
+    const tabName = tab.getAttribute('data-tab');
+
+    // Desactivar todas las pestañas y activar la seleccionada
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    // Detener intervalo automático de OCR si cambiamos de pestaña
+    if (ocrSubstepInterval) {
+      clearInterval(ocrSubstepInterval);
+      ocrSubstepInterval = null;
+    }
+
+    if (tabName === 'planner') {
+      activateImage('showcase-img-planner');
+    } else if (tabName === 'ocr') {
+      // Activar por defecto el paso 1
+      activateOcrStep(1);
+      // Iniciar rotación automática de los pasos de OCR
+      startOcrAutoRotation();
+    } else if (tabName === 'chat') {
+      activateImage('showcase-img-chat');
+    } else if (tabName === 'grafos') {
+      activateImage('showcase-img-grafos');
+    }
+  }
+
+  function activateOcrStep(stepNum: number) {
+    currentOcrStepIndex = stepNum;
+    ocrSubsteps.forEach(sub => {
+      const subNum = parseInt(sub.getAttribute('data-ocr-step') || '1');
+      if (subNum === stepNum) {
+        sub.classList.add('active');
+      } else {
+        sub.classList.remove('active');
+      }
+    });
+    activateImage(`showcase-img-ocr-${stepNum}`);
+  }
+
+  function startOcrAutoRotation() {
+    ocrSubstepInterval = window.setInterval(() => {
+      let nextStep = currentOcrStepIndex + 1;
+      if (nextStep > 3) nextStep = 1;
+      activateOcrStep(nextStep);
+    }, 4000); // Cambiar de paso de OCR cada 4 segundos
+  }
+
+  // Event Listeners para pestañas principales
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => handleTabClick(tab));
+  });
+
+  // Event Listeners para subpasos de OCR
+  ocrSubsteps.forEach(substep => {
+    substep.addEventListener('click', (e) => {
+      e.stopPropagation(); // Evitar que el clic en el subpaso dispare el clic del tab completo
+      
+      // Detener rotación automática al hacer clic manual
+      if (ocrSubstepInterval) {
+        clearInterval(ocrSubstepInterval);
+        ocrSubstepInterval = null;
+      }
+      
+      const stepNum = parseInt(substep.getAttribute('data-ocr-step') || '1');
+      
+      // Asegurarse de que el tab OCR tiene la clase active
+      tabs.forEach(t => {
+        if (t.getAttribute('data-tab') === 'ocr') {
+          t.classList.add('active');
+        } else {
+          t.classList.remove('active');
+        }
+      });
+
+      activateOcrStep(stepNum);
+    });
+  });
+</script>
+
+<style>
+  .showcase {
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .showcase-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .showcase-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .showcase-tab {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .showcase-tab:hover {
+    border-color: rgba(124, 58, 237, 0.15);
+    background: rgba(124, 58, 237, 0.02);
+    transform: translateX(4px);
+  }
+
+  .showcase-tab.active {
+    border-color: rgba(124, 58, 237, 0.3);
+    background: rgba(124, 58, 237, 0.05);
+    box-shadow: 0 10px 25px -10px rgba(124, 58, 237, 0.15);
+  }
+
+  .tab-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 0.75rem;
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .showcase-tab.active .tab-icon {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.2);
+  }
+
+  .tab-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .tab-title {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--color-text);
+  }
+
+  .tab-description {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  /* Substeps for OCR flow */
+  .tab-substeps {
+    display: none;
+    margin-top: 1rem;
+    margin-left: 3.75rem; /* Align with description */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    width: calc(100% - 3.75rem);
+    z-index: 10;
+  }
+
+  .showcase-tab[data-tab="ocr"].active .tab-substeps {
+    display: grid;
+  }
+
+  .substep {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 0.5rem;
+    background: white;
+    color: var(--color-text-muted);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .substep:hover {
+    background: rgba(124, 58, 237, 0.05);
+    color: var(--color-primary-dark);
+  }
+
+  .substep.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+  }
+
+  /* Visual Showcase - Mockup */
+  .showcase-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .phone-wrapper {
+    position: relative;
+    width: 290px;
+    height: 580px;
+  }
+
+  .phone-glow {
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    top: -20%;
+    left: -20%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(59, 130, 246, 0.05) 50%, rgba(255, 255, 255, 0) 70%);
+    z-index: 1;
+    pointer-events: none;
+    animation: pulseGlow 8s infinite alternate ease-in-out;
+  }
+
+  @keyframes pulseGlow {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1.2; }
+  }
+
+  .phone-case {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #0f172a;
+    border-radius: 2.75rem;
+    padding: 0.75rem;
+    box-shadow: 0 30px 70px rgba(124, 58, 237, 0.25), 
+                0 15px 30px rgba(0, 0, 0, 0.2),
+                inset 0 0 4px rgba(255, 255, 255, 0.25);
+    z-index: 2;
+  }
+
+  /* Phone Buttons */
+  .phone-button {
+    position: absolute;
+    background: #1e293b;
+    border-radius: 2px 0 0 2px;
+  }
+  .phone-button.power {
+    top: 150px;
+    right: -2px;
+    width: 2px;
+    height: 50px;
+    border-radius: 0 2px 2px 0;
+  }
+  .phone-button.volume-up {
+    top: 120px;
+    left: -2px;
+    width: 2px;
+    height: 40px;
+  }
+  .phone-button.volume-down {
+    top: 170px;
+    left: -2px;
+    width: 2px;
+    height: 40px;
+  }
+
+  .phone-camera-notch {
+    position: absolute;
+    top: 1.1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 20px;
+    background: #0f172a;
+    border-radius: 0 0 12px 12px;
+    z-index: 25;
+  }
+
+  .phone-display {
+    width: 100%;
+    height: 100%;
+    background: #f8fafc;
+    border-radius: 2.1rem;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Custom Status Bar CSS overlay */
+  .phone-status-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 24px 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-text);
+    background: white;
+    z-index: 15;
+    pointer-events: none; /* Let clicks pass through if needed */
+  }
+
+  .status-icons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    color: var(--color-text);
+  }
+
+  .phone-screenshot-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .screenshot-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 108%; /* 8% taller to crop the bottom navigation bar */
+    object-fit: cover;
+    object-position: top; /* Align exactly to top to cover status bar in screenshot */
+    opacity: 0;
+    transform: scale(0.96) translateY(5px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+  }
+
+  .screenshot-img.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    z-index: 10;
+  }
+
+  /* Responsiveness */
+  @media (max-width: 900px) {
+    .showcase-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    .showcase-visual {
+      order: -1; /* Muestra el teléfono arriba en pantallas pequeñas */
+    }
+  }
+
+  @media (max-width: 640px) {
+    .showcase-tab {
+      padding: 1.1rem;
+    }
+    
+    .tab-substeps {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+</style>
