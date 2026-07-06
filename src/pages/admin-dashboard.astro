@@ -1,0 +1,793 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Khipu AI — Panel de Control Administrativo"
+  description="Panel privado para visualizar métricas de descargas, accesos, suscripciones y precisión del producto."
+>
+  <Header />
+  <main class="admin-main">
+    <div class="container">
+      <div class="admin-header">
+        <div>
+          <h1 class="admin-title">Panel de Métricas</h1>
+          <p class="admin-subtitle">Monitoreo de descargas, adquisición y precisión de la IA de Khipu AI.</p>
+        </div>
+        <div class="connection-status-badge disconnected" id="connection-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Modo Demostración (Local)</span>
+        </div>
+      </div>
+
+      <!-- Configuración del Backend -->
+      <section class="config-card glass-card">
+        <h2 class="card-title">Conectar con Base de Datos / API de Khipu AI</h2>
+        <p class="card-desc">Para ver datos reales, ingresa la URL de tu API del backend y tu token de administrador. Los datos se guardan de forma segura de forma local en tu navegador.</p>
+        
+        <form id="api-config-form" class="config-form">
+          <div class="form-group">
+            <label for="api-url">URL del Backend API</label>
+            <input 
+              type="url" 
+              id="api-url" 
+              placeholder="https://tu-api-khipu.herokuapp.com" 
+              class="form-input"
+            />
+          </div>
+          <div class="form-group">
+            <label for="api-token">Token de Administrador (Bearer Token)</label>
+            <input 
+              type="password" 
+              id="api-token" 
+              placeholder="Ingresa tu clave secreta de admin" 
+              class="form-input"
+            />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="btn-connect">Conectar API Real</button>
+            <button type="button" class="btn btn-secondary" id="btn-disconnect" style="display: none;">Desconectar</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Panel de Métricas Principal -->
+      <div class="metrics-grid">
+        <!-- Tarjeta 1: Usuarios Totales -->
+        <div class="metric-card glass-card">
+          <div class="metric-header">
+            <span class="metric-label">Usuarios Totales</span>
+            <div class="metric-icon users-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <div class="metric-value" id="val-total-users">1,248</div>
+          <div class="metric-change positive">
+            <span>↑ 12% este mes</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Suscripciones PRO -->
+        <div class="metric-card glass-card pro-card">
+          <div class="metric-header">
+            <span class="metric-label text-white">Suscripciones PRO</span>
+            <div class="metric-icon pro-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+          <div class="metric-value text-white" id="val-pro-users">48</div>
+          <div class="metric-change text-white-muted">
+            <span id="val-conversion-rate">Tasa de conversión: 3.8%</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Descargas del APK -->
+        <div class="metric-card glass-card">
+          <div class="metric-header">
+            <span class="metric-label">Descargas APK (Plausible)</span>
+            <div class="metric-icon downloads-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+          </div>
+          <div class="metric-value" id="val-apk-downloads">342</div>
+          <div class="metric-change positive">
+            <span>En base a clics de descarga</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Precisión del Producto -->
+        <div class="metric-card glass-card">
+          <div class="metric-header">
+            <span class="metric-label">Precisión de IA (Historial SM-2)</span>
+            <div class="metric-icon precision-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+          </div>
+          <div class="precision-score-wrapper">
+            <div class="metric-value" id="val-precision">4.62<span class="max-score">/ 5.0</span></div>
+            <div class="precision-badge" id="val-precision-label">Excelente</div>
+          </div>
+          <div class="metric-change positive">
+            <span>Basado en calificaciones SM-2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <!-- Gráfico / Estadísticas de Uso Diario -->
+        <div class="details-card glass-card usage-stats">
+          <h2 class="card-title">Interacción y Uso del Sistema (Mensual)</h2>
+          <p class="card-desc">Cantidad total de recursos solicitados por los estudiantes en la plataforma móvil.</p>
+          
+          <div class="usage-bar-chart">
+            <div class="chart-bar-item">
+              <div class="bar-label-group">
+                <span>Subidas de Documentos (PDF/Fotos)</span>
+                <strong id="val-usage-captures">1,842</strong>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill captures-fill" style="width: 75%"></div>
+              </div>
+            </div>
+            
+            <div class="chart-bar-item">
+              <div class="bar-label-group">
+                <span>Mensajes Enviados al Tutor IA</span>
+                <strong id="val-usage-messages">12,504</strong>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill messages-fill" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="chart-bar-item">
+              <div class="bar-label-group">
+                <span>Exámenes Generados</span>
+                <strong id="val-usage-exams">412</strong>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill exams-fill" style="width: 45%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback del Historial de Flashcards (SM-2) -->
+        <div class="details-card glass-card reviews-card">
+          <h2 class="card-title">Historial Reciente de Repasos (SM-2)</h2>
+          <p class="card-desc">Últimos conceptos evaluados y calificados por los usuarios del 0 al 5.</p>
+          
+          <div class="reviews-list" id="reviews-container">
+            <!-- Cargado por JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Guía de API para Desarrollador -->
+      <section class="developer-guide-card glass-card">
+        <h2 class="card-title">Instrucciones para el Backend (Integración API)</h2>
+        <p class="card-desc">Para conectar el backend real de tu aplicación, tu API debe responder con el siguiente formato JSON en la ruta que configures arriba:</p>
+        <pre class="json-code"><code>{`{
+  "totalUsers": 1250,
+  "proUsers": 48,
+  "totalDownloads": 342,
+  "averageRating": 4.62,
+  "usage": {
+    "captures": 1842,
+    "tutorMessages": 12504,
+    "examsGenerated": 412
+  },
+  "recentReviews": [
+    { "id": 1, "date": "2026-07-06", "rating": 5, "concept": "Fotosíntesis" },
+    { "id": 2, "date": "2026-07-06", "rating": 4, "concept": "Ecuaciones Diferenciales" }
+  ]
+}`}</code></pre>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Datos simulados por defecto (Mock data)
+  const mockData = {
+    totalUsers: 1248,
+    proUsers: 48,
+    totalDownloads: 342,
+    averageRating: 4.62,
+    usage: {
+      captures: 1842,
+      tutorMessages: 12504,
+      examsGenerated: 412
+    },
+    recentReviews: [
+      { id: 1, date: "Hace 2 min", rating: 5, concept: "Mitosis y Meiosis" },
+      { id: 2, date: "Hace 15 min", rating: 4, concept: "Segunda Ley de Newton" },
+      { id: 3, date: "Hace 32 min", rating: 5, concept: "Derivadas Implícitas" },
+      { id: 4, date: "Hace 1 hora", rating: 3, concept: "Revolución Industrial" },
+      { id: 5, date: "Hace 2 horas", rating: 5, concept: "Estructura del ADN" }
+    ]
+  };
+
+  // Selectores DOM
+  const form = document.getElementById('api-config-form') as HTMLFormElement;
+  const apiUrlInput = document.getElementById('api-url') as HTMLInputElement;
+  const apiTokenInput = document.getElementById('api-token') as HTMLInputElement;
+  const btnConnect = document.getElementById('btn-connect') as HTMLButtonElement;
+  const btnDisconnect = document.getElementById('btn-disconnect') as HTMLButtonElement;
+  const connectionStatus = document.getElementById('connection-status') as HTMLElement;
+
+  // Selectores de valores métricos
+  const elTotalUsers = document.getElementById('val-total-users');
+  const elProUsers = document.getElementById('val-pro-users');
+  const elConversionRate = document.getElementById('val-conversion-rate');
+  const elApkDownloads = document.getElementById('val-apk-downloads');
+  const elPrecision = document.getElementById('val-precision');
+  const elPrecisionLabel = document.getElementById('val-precision-label');
+  const elUsageCaptures = document.getElementById('val-usage-captures');
+  const elUsageMessages = document.getElementById('val-usage-messages');
+  const elUsageExams = document.getElementById('val-usage-exams');
+  const reviewsContainer = document.getElementById('reviews-container');
+
+  // Cargar credenciales desde localStorage al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedUrl = localStorage.getItem('khipu_api_url');
+    const savedToken = localStorage.getItem('khipu_api_token');
+
+    if (savedUrl && savedToken) {
+      apiUrlInput.value = savedUrl;
+      apiTokenInput.value = savedToken;
+      connectToAPI(savedUrl, savedToken);
+    } else {
+      renderData(mockData);
+    }
+  });
+
+  // Listener para conectar API
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const url = apiUrlInput.value.trim();
+      const token = apiTokenInput.value.trim();
+
+      if (url && token) {
+        localStorage.setItem('khipu_api_url', url);
+        localStorage.setItem('khipu_api_token', token);
+        connectToAPI(url, token);
+      }
+    });
+  }
+
+  // Listener para desconectar
+  if (btnDisconnect) {
+    btnDisconnect.addEventListener('click', () => {
+      localStorage.removeItem('khipu_api_url');
+      localStorage.removeItem('khipu_api_token');
+      apiUrlInput.value = '';
+      apiTokenInput.value = '';
+      
+      btnConnect.style.display = 'inline-block';
+      btnDisconnect.style.display = 'none';
+      
+      connectionStatus.className = 'connection-status-badge disconnected';
+      connectionStatus.querySelector('.status-text')!.textContent = 'Modo Demostración (Local)';
+      
+      renderData(mockData);
+    });
+  }
+
+  // Función para conectarse a la API real
+  async function connectToAPI(url: string, token: string) {
+    if (connectionStatus) {
+      connectionStatus.className = 'connection-status-badge connecting';
+      connectionStatus.querySelector('.status-text')!.textContent = 'Conectando a base de datos...';
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) throw new Error('Falló la conexión con el servidor API');
+
+      const data = await response.json();
+      renderData(data);
+
+      if (connectionStatus && btnConnect && btnDisconnect) {
+        connectionStatus.className = 'connection-status-badge connected';
+        connectionStatus.querySelector('.status-text')!.textContent = 'Conectado a API Real';
+        btnConnect.style.display = 'none';
+        btnDisconnect.style.display = 'inline-block';
+      }
+    } catch (err) {
+      console.error(err);
+      if (connectionStatus) {
+        connectionStatus.className = 'connection-status-badge error';
+        connectionStatus.querySelector('.status-text')!.textContent = 'Error de conexión. Usando modo demo.';
+      }
+      setTimeout(() => {
+        renderData(mockData);
+      }, 1000);
+    }
+  }
+
+  // Renderizar los datos en el dashboard
+  function renderData(data: typeof mockData) {
+    if (elTotalUsers) elTotalUsers.textContent = data.totalUsers.toLocaleString();
+    if (elProUsers) elProUsers.textContent = data.proUsers.toLocaleString();
+    
+    // Tasa de conversión
+    if (elConversionRate) {
+      const rate = ((data.proUsers / data.totalUsers) * 100).toFixed(1);
+      elConversionRate.textContent = `Tasa de conversión: ${rate}%`;
+    }
+
+    if (elApkDownloads) elApkDownloads.textContent = data.totalDownloads.toLocaleString();
+    
+    // Precisión SM-2
+    if (elPrecision) {
+      elPrecision.innerHTML = `${data.averageRating.toFixed(2)}<span class="max-score">/ 5.0</span>`;
+    }
+
+    if (elPrecisionLabel) {
+      if (data.averageRating >= 4.5) {
+        elPrecisionLabel.textContent = 'Sobresaliente';
+        elPrecisionLabel.className = 'precision-badge outstanding';
+      } else if (data.averageRating >= 4.0) {
+        elPrecisionLabel.textContent = 'Excelente';
+        elPrecisionLabel.className = 'precision-badge excellent';
+      } else {
+        elPrecisionLabel.textContent = 'Buena';
+        elPrecisionLabel.className = 'precision-badge good';
+      }
+    }
+
+    // Uso
+    if (elUsageCaptures) elUsageCaptures.textContent = data.usage.captures.toLocaleString();
+    if (elUsageMessages) elUsageMessages.textContent = data.usage.tutorMessages.toLocaleString();
+    if (elUsageExams) elUsageExams.textContent = data.usage.exams.toLocaleString();
+
+    // Actualizar barras de gráfico
+    const maxUsage = Math.max(data.usage.captures, data.usage.tutorMessages, data.usage.exams);
+    document.querySelector('.captures-fill')!.setAttribute('style', `width: ${(data.usage.captures / maxUsage) * 100}%`);
+    document.querySelector('.messages-fill')!.setAttribute('style', `width: ${(data.usage.tutorMessages / maxUsage) * 100}%`);
+    document.querySelector('.exams-fill')!.setAttribute('style', `width: ${(data.usage.exams / maxUsage) * 100}%`);
+
+    // Listado de reseñas/repasos
+    if (reviewsContainer) {
+      reviewsContainer.innerHTML = '';
+      data.recentReviews.forEach((review) => {
+        const item = document.createElement('div');
+        item.className = 'review-item';
+        
+        let stars = '';
+        for (let i = 1; i <= 5; i++) {
+          stars += `<span class="star ${i <= review.rating ? 'active' : ''}">★</span>`;
+        }
+
+        item.innerHTML = `
+          <div class="review-meta">
+            <span class="review-concept">${review.concept}</span>
+            <span class="review-date">${review.date}</span>
+          </div>
+          <div class="review-stars">
+            ${stars}
+            <span class="review-rating-num">${review.rating}/5</span>
+          </div>
+        `;
+        reviewsContainer.appendChild(item);
+      });
+    }
+  }
+</script>
+
+<style>
+  .admin-main {
+    background: #f8fafc;
+    padding: 3rem 0;
+    min-height: 80vh;
+  }
+
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .admin-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .admin-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+  }
+
+  /* Badges de Conexión */
+  .connection-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  }
+
+  .connection-status-badge.disconnected {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+  }
+
+  .connection-status-badge.disconnected .status-dot {
+    background: #94a3b8;
+  }
+
+  .connection-status-badge.connecting {
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fde68a;
+  }
+
+  .connection-status-badge.connecting .status-dot {
+    background: #f59e0b;
+    animation: pulse 1.5s infinite;
+  }
+
+  .connection-status-badge.connected {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+
+  .connection-status-badge.connected .status-dot {
+    background: #22c55e;
+  }
+
+  .connection-status-badge.error {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+  }
+
+  .connection-status-badge.error .status-dot {
+    background: #ef4444;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* Tarjetas Generales (Glassmorphic) */
+  .glass-card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  }
+
+  /* Formulario de Configuración */
+  .config-card {
+    margin-bottom: 2.5rem;
+  }
+
+  .card-title {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .card-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .config-form {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .form-group {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .form-input {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #cbd5e1;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-input:focus {
+    border-color: var(--color-primary);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  /* Grilla de Tarjetas Métricas */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .metric-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 160px;
+  }
+
+  .pro-card {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    border-color: var(--color-primary-light);
+  }
+
+  .metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .metric-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .metric-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    background: #f1f5f9;
+    color: var(--color-primary);
+  }
+
+  .pro-card .metric-icon {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+  }
+
+  .metric-value {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-change {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .metric-change.positive {
+    color: var(--color-success);
+  }
+
+  .text-white-muted {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Puntuación de Precisión */
+  .precision-score-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .max-score {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .precision-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  .precision-badge.outstanding {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  .precision-badge.excellent {
+    background: #dbeafe;
+    color: #1d4ed8;
+  }
+
+  .precision-badge.good {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  /* Estructura de Detalles (Gráficos / Listas) */
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Barras de Uso */
+  .usage-bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .bar-label-group {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .bar-label-group span {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .bar-label-group strong {
+    font-weight: 700;
+  }
+
+  .bar-track {
+    width: 100%;
+    height: 10px;
+    background: #f1f5f9;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .captures-fill {
+    background: var(--color-primary);
+  }
+
+  .messages-fill {
+    background: var(--color-secondary);
+  }
+
+  .exams-fill {
+    background: var(--color-success);
+  }
+
+  /* Listado de Reviews */
+  .reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  .review-item {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: #f8fafc;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .review-meta {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-concept {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  .review-date {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .review-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .star {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+  }
+
+  .star.active {
+    color: #fbbf24;
+  }
+
+  .review-rating-num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin-left: 0.25rem;
+  }
+
+  /* Guía de Desarrollador */
+  .json-code {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    border: 1px solid #1e293b;
+    margin-top: 1rem;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.7;
+    }
+  }
+</style>
