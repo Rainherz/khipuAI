@@ -134,26 +134,7 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
 
-      <!-- Guía de API para Desarrollador -->
-      <section class="developer-guide-card glass-card">
-        <h2 class="card-title">Instrucciones para el Backend (Integración API)</h2>
-        <p class="card-desc">Para conectar el backend real de tu aplicación, tu API debe responder con el siguiente formato JSON en la ruta que configures arriba:</p>
-        <pre class="json-code"><code>{`{
-  "totalUsers": 1250,
-  "proUsers": 48,
-  "totalDownloads": 342,
-  "averageRating": 4.62,
-  "usage": {
-    "captures": 1842,
-    "tutorMessages": 12504,
-    "examsGenerated": 412
-  },
-  "recentReviews": [
-    { "id": 1, "date": "2026-07-06", "rating": 5, "concept": "Fotosíntesis" },
-    { "id": 2, "date": "2026-07-06", "rating": 4, "concept": "Ecuaciones Diferenciales" }
-  ]
-}`}</code></pre>
-      </section>
+
     </div>
   </main>
   <Footer />
@@ -480,6 +461,18 @@ import Footer from '../components/Footer.astro';
     background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
     color: white;
     border-color: var(--color-primary-light);
+  }
+
+  .pro-card .metric-label {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .pro-card .metric-value {
+    color: white;
+  }
+
+  .pro-card .metric-change {
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .metric-header {
