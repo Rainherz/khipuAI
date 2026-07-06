@@ -2,7 +2,7 @@
 const { 
   title,
   description = "Khipu AI extrae conceptos de tus apuntes y programa repasos inteligentes con SM-2. Estudia más, olvida menos.",
-  ogImage = "https://khipu-ai.vercel.app/og-image.jpg"
+  ogImage = "https://khipuai.netlify.app/og-image.jpg"
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ const {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
-  <meta property="og:url" content="https://khipu-ai.vercel.app" />
+  <meta property="og:url" content="https://khipuai.netlify.app" />
   <meta property="og:type" content="website" />
 
   <!-- Twitter -->
@@ -33,7 +33,7 @@ const {
   <meta name="twitter:image" content={ogImage} />
 
   <!-- Plausible Analytics -->
-  <script defer data-domain="khipu-ai.vercel.app" src="https://plausible.io/js/script.js"></script>
+  <script defer data-domain="khipuai.netlify.app" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
   <slot />
