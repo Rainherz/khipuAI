@@ -233,16 +233,15 @@ import Footer from '../components/Footer.astro';
 
   // Cargar credenciales desde localStorage al cargar la página
   window.addEventListener('DOMContentLoaded', () => {
-    const savedUrl = localStorage.getItem('khipu_api_url');
-    const savedToken = localStorage.getItem('khipu_api_token');
+    const defaultUrl = 'https://khipu-ai-backend-1013222499074.us-central1.run.app/v1/admin/metrics';
+    const defaultToken = 'cambia-esto-por-un-string-aleatorio-de-64-chars';
 
-    if (savedUrl && savedToken) {
-      apiUrlInput.value = savedUrl;
-      apiTokenInput.value = savedToken;
-      connectToAPI(savedUrl, savedToken);
-    } else {
-      renderData(mockData);
-    }
+    const savedUrl = localStorage.getItem('khipu_api_url') || defaultUrl;
+    const savedToken = localStorage.getItem('khipu_api_token') || defaultToken;
+
+    apiUrlInput.value = savedUrl;
+    apiTokenInput.value = savedToken;
+    connectToAPI(savedUrl, savedToken);
   });
 
   // Listener para conectar API
