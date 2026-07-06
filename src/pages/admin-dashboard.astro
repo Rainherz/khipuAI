@@ -32,7 +32,7 @@ import Footer from '../components/Footer.astro';
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
           </div>
-          <div class="metric-value" id="val-total-users">1,248</div>
+          <div class="metric-value" id="val-total-users">--</div>
           <div class="metric-change positive">
             <span>↑ 12% este mes</span>
           </div>
@@ -46,9 +46,9 @@ import Footer from '../components/Footer.astro';
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </div>
           </div>
-          <div class="metric-value text-white" id="val-pro-users">48</div>
+          <div class="metric-value text-white" id="val-pro-users">--</div>
           <div class="metric-change text-white-muted">
-            <span id="val-conversion-rate">Tasa de conversión: 3.8%</span>
+            <span id="val-conversion-rate">Tasa de conversión: --</span>
           </div>
         </div>
 
@@ -60,7 +60,7 @@ import Footer from '../components/Footer.astro';
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </div>
           </div>
-          <div class="metric-value" id="val-apk-downloads">342</div>
+          <div class="metric-value" id="val-apk-downloads">--</div>
           <div class="metric-change positive">
             <span>En base a clics de descarga</span>
           </div>
@@ -75,7 +75,7 @@ import Footer from '../components/Footer.astro';
             </div>
           </div>
           <div class="precision-score-wrapper">
-            <div class="metric-value" id="val-precision">4.62<span class="max-score">/ 5.0</span></div>
+            <div class="metric-value" id="val-precision">--<span class="max-score">/ 5.0</span></div>
             <div class="precision-badge" id="val-precision-label">Excelente</div>
           </div>
           <div class="metric-change positive">
@@ -94,7 +94,7 @@ import Footer from '../components/Footer.astro';
             <div class="chart-bar-item">
               <div class="bar-label-group">
                 <span>Subidas de Documentos (PDF/Fotos)</span>
-                <strong id="val-usage-captures">1,842</strong>
+                <strong id="val-usage-captures">--</strong>
               </div>
               <div class="bar-track">
                 <div class="bar-fill captures-fill" style="width: 75%"></div>
@@ -104,7 +104,7 @@ import Footer from '../components/Footer.astro';
             <div class="chart-bar-item">
               <div class="bar-label-group">
                 <span>Mensajes Enviados al Tutor IA</span>
-                <strong id="val-usage-messages">12,504</strong>
+                <strong id="val-usage-messages">--</strong>
               </div>
               <div class="bar-track">
                 <div class="bar-fill messages-fill" style="width: 90%"></div>
@@ -114,7 +114,7 @@ import Footer from '../components/Footer.astro';
             <div class="chart-bar-item">
               <div class="bar-label-group">
                 <span>Exámenes Generados</span>
-                <strong id="val-usage-exams">412</strong>
+                <strong id="val-usage-exams">--</strong>
               </div>
               <div class="bar-track">
                 <div class="bar-fill exams-fill" style="width: 45%"></div>
@@ -141,25 +141,23 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
-  // Datos simulados por defecto (Mock data)
-  const mockData = {
-    totalUsers: 1248,
-    proUsers: 48,
-    totalDownloads: 342,
-    averageRating: 4.62,
+  interface DashboardData {
+    totalUsers: number;
+    proUsers: number;
+    totalDownloads: number;
+    averageRating: number;
     usage: {
-      captures: 1842,
-      tutorMessages: 12504,
-      examsGenerated: 412
-    },
-    recentReviews: [
-      { id: 1, date: "Hace 2 min", rating: 5, concept: "Mitosis y Meiosis" },
-      { id: 2, date: "Hace 15 min", rating: 4, concept: "Segunda Ley de Newton" },
-      { id: 3, date: "Hace 32 min", rating: 5, concept: "Derivadas Implícitas" },
-      { id: 4, date: "Hace 1 hora", rating: 3, concept: "Revolución Industrial" },
-      { id: 5, date: "Hace 2 horas", rating: 5, concept: "Estructura del ADN" }
-    ]
-  };
+      captures: number;
+      tutorMessages: number;
+      examsGenerated: number;
+    };
+    recentReviews: {
+      id: number;
+      date: string;
+      rating: number;
+      concept: string;
+    }[];
+  }
 
   // Selectores DOM
   const connectionStatus = document.getElementById('connection-status') as HTMLElement;
@@ -213,14 +211,14 @@ import Footer from '../components/Footer.astro';
       console.error(err);
       if (connectionStatus) {
         connectionStatus.className = 'connection-status-badge error';
-        connectionStatus.querySelector('.status-text')!.textContent = 'Modo Demo (Sin conexión)';
+        connectionStatus.querySelector('.status-text')!.textContent = 'Sin conexión';
       }
-      renderData(mockData);
+      renderEmptyState();
     }
   }
 
   // Renderizar los datos en el dashboard
-  function renderData(data: typeof mockData) {
+  function renderData(data: DashboardData) {
     if (elTotalUsers) elTotalUsers.textContent = data.totalUsers.toLocaleString();
     if (elProUsers) elProUsers.textContent = data.proUsers.toLocaleString();
     
@@ -285,6 +283,30 @@ import Footer from '../components/Footer.astro';
         `;
         reviewsContainer.appendChild(item);
       });
+    }
+  }
+
+  // Renderizar estado vacío cuando no hay conexión con la API
+  function renderEmptyState() {
+    if (elTotalUsers) elTotalUsers.textContent = '--';
+    if (elProUsers) elProUsers.textContent = '--';
+    if (elConversionRate) elConversionRate.textContent = 'Tasa de conversión: --';
+    if (elApkDownloads) elApkDownloads.textContent = '--';
+    if (elPrecision) elPrecision.innerHTML = '--<span class="max-score">/ 5.0</span>';
+    if (elPrecisionLabel) {
+      elPrecisionLabel.textContent = 'Sin datos';
+      elPrecisionLabel.className = 'precision-badge';
+    }
+    if (elUsageCaptures) elUsageCaptures.textContent = '--';
+    if (elUsageMessages) elUsageMessages.textContent = '--';
+    if (elUsageExams) elUsageExams.textContent = '--';
+
+    document.querySelector('.captures-fill')!.setAttribute('style', 'width: 0%');
+    document.querySelector('.messages-fill')!.setAttribute('style', 'width: 0%');
+    document.querySelector('.exams-fill')!.setAttribute('style', 'width: 0%');
+
+    if (reviewsContainer) {
+      reviewsContainer.innerHTML = '<div class="review-item"><span class="review-concept">No hay repasos recientes</span></div>';
     }
   }
 </script>
@@ -705,3 +727,4 @@ import Footer from '../components/Footer.astro';
     }
   }
 </style>
+
