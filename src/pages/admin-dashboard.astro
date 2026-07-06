@@ -16,42 +16,11 @@ import Footer from '../components/Footer.astro';
           <h1 class="admin-title">Panel de Métricas</h1>
           <p class="admin-subtitle">Monitoreo de descargas, adquisición y precisión de la IA de Khipu AI.</p>
         </div>
-        <div class="connection-status-badge disconnected" id="connection-status">
+        <div class="connection-status-badge connecting" id="connection-status">
           <span class="status-dot"></span>
-          <span class="status-text">Modo Demostración (Local)</span>
+          <span class="status-text">Sincronizando...</span>
         </div>
       </div>
-
-      <!-- Configuración del Backend -->
-      <section class="config-card glass-card">
-        <h2 class="card-title">Conectar con Base de Datos / API de Khipu AI</h2>
-        <p class="card-desc">Para ver datos reales, ingresa la URL de tu API del backend y tu token de administrador. Los datos se guardan de forma segura de forma local en tu navegador.</p>
-        
-        <form id="api-config-form" class="config-form">
-          <div class="form-group">
-            <label for="api-url">URL del Backend API</label>
-            <input 
-              type="url" 
-              id="api-url" 
-              placeholder="https://tu-api-khipu.herokuapp.com" 
-              class="form-input"
-            />
-          </div>
-          <div class="form-group">
-            <label for="api-token">Token de Administrador (Bearer Token)</label>
-            <input 
-              type="password" 
-              id="api-token" 
-              placeholder="Ingresa tu clave secreta de admin" 
-              class="form-input"
-            />
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary" id="btn-connect">Conectar API Real</button>
-            <button type="button" class="btn btn-secondary" id="btn-disconnect" style="display: none;">Desconectar</button>
-          </div>
-        </form>
-      </section>
 
       <!-- Panel de Métricas Principal -->
       <div class="metrics-grid">
@@ -212,11 +181,6 @@ import Footer from '../components/Footer.astro';
   };
 
   // Selectores DOM
-  const form = document.getElementById('api-config-form') as HTMLFormElement;
-  const apiUrlInput = document.getElementById('api-url') as HTMLInputElement;
-  const apiTokenInput = document.getElementById('api-token') as HTMLInputElement;
-  const btnConnect = document.getElementById('btn-connect') as HTMLButtonElement;
-  const btnDisconnect = document.getElementById('btn-disconnect') as HTMLButtonElement;
   const connectionStatus = document.getElementById('connection-status') as HTMLElement;
 
   // Selectores de valores métricos
@@ -231,57 +195,19 @@ import Footer from '../components/Footer.astro';
   const elUsageExams = document.getElementById('val-usage-exams');
   const reviewsContainer = document.getElementById('reviews-container');
 
-  // Cargar credenciales desde localStorage al cargar la página
+  // Cargar credenciales e intentar conexión automática
   window.addEventListener('DOMContentLoaded', () => {
-    const defaultUrl = 'https://khipu-ai-backend-1013222499074.us-central1.run.app/v1/admin/metrics';
-    const defaultToken = 'cambia-esto-por-un-string-aleatorio-de-64-chars';
+    const defaultUrl = import.meta.env.PUBLIC_API_URL || 'https://khipu-ai-backend-1013222499074.us-central1.run.app/v1/admin/metrics';
+    const defaultToken = import.meta.env.PUBLIC_API_TOKEN || 'cambia-esto-por-un-string-aleatorio-de-64-chars';
 
-    const savedUrl = localStorage.getItem('khipu_api_url') || defaultUrl;
-    const savedToken = localStorage.getItem('khipu_api_token') || defaultToken;
-
-    apiUrlInput.value = savedUrl;
-    apiTokenInput.value = savedToken;
-    connectToAPI(savedUrl, savedToken);
+    connectToAPI(defaultUrl, defaultToken);
   });
-
-  // Listener para conectar API
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const url = apiUrlInput.value.trim();
-      const token = apiTokenInput.value.trim();
-
-      if (url && token) {
-        localStorage.setItem('khipu_api_url', url);
-        localStorage.setItem('khipu_api_token', token);
-        connectToAPI(url, token);
-      }
-    });
-  }
-
-  // Listener para desconectar
-  if (btnDisconnect) {
-    btnDisconnect.addEventListener('click', () => {
-      localStorage.removeItem('khipu_api_url');
-      localStorage.removeItem('khipu_api_token');
-      apiUrlInput.value = '';
-      apiTokenInput.value = '';
-      
-      btnConnect.style.display = 'inline-block';
-      btnDisconnect.style.display = 'none';
-      
-      connectionStatus.className = 'connection-status-badge disconnected';
-      connectionStatus.querySelector('.status-text')!.textContent = 'Modo Demostración (Local)';
-      
-      renderData(mockData);
-    });
-  }
 
   // Función para conectarse a la API real
   async function connectToAPI(url: string, token: string) {
     if (connectionStatus) {
       connectionStatus.className = 'connection-status-badge connecting';
-      connectionStatus.querySelector('.status-text')!.textContent = 'Conectando a base de datos...';
+      connectionStatus.querySelector('.status-text')!.textContent = 'Sincronizando...';
     }
 
     try {
@@ -298,21 +224,17 @@ import Footer from '../components/Footer.astro';
       const data = await response.json();
       renderData(data);
 
-      if (connectionStatus && btnConnect && btnDisconnect) {
+      if (connectionStatus) {
         connectionStatus.className = 'connection-status-badge connected';
-        connectionStatus.querySelector('.status-text')!.textContent = 'Conectado a API Real';
-        btnConnect.style.display = 'none';
-        btnDisconnect.style.display = 'inline-block';
+        connectionStatus.querySelector('.status-text')!.textContent = 'En Vivo';
       }
     } catch (err) {
       console.error(err);
       if (connectionStatus) {
         connectionStatus.className = 'connection-status-badge error';
-        connectionStatus.querySelector('.status-text')!.textContent = 'Error de conexión. Usando modo demo.';
+        connectionStatus.querySelector('.status-text')!.textContent = 'Modo Demo (Sin conexión)';
       }
-      setTimeout(() => {
-        renderData(mockData);
-      }, 1000);
+      renderData(mockData);
     }
   }
 
