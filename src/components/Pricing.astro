@@ -2,10 +2,23 @@
   <div class="container">
     <h2 class="section-title">Planes y precios</h2>
     <p class="section-subtitle">Empieza gratis. Cuando estés listo, el plan PRO desbloquea todo sin límites.</p>
+
+    <!-- Selector de Facturación -->
+    <div class="billing-toggle-container">
+      <button id="btn-monthly" class="billing-toggle-btn active" type="button">
+        Mensual
+      </button>
+      <button id="btn-semestral" class="billing-toggle-btn" type="button">
+        Semestral <span class="discount-badge">(4 meses) — Ahorra 37.5%</span>
+      </button>
+    </div>
+
     <div class="pricing-grid">
       <div class="plan">
         <h3 class="plan-name">FREE</h3>
-        <div class="plan-price">Gratis</div>
+        <div class="plan-price-container">
+          <div class="plan-price">Gratis</div>
+        </div>
         <p class="plan-desc">Perfecto para empezar y probar todo el potencial de Khipu AI.</p>
         <ul class="plan-features">
           <li><span class="check">✓</span> 30 subidas de archivos/mes</li>
@@ -19,9 +32,17 @@
         <a href="#download" class="btn btn-secondary btn-large" data-track="click_plan_free">Comenzar gratis</a>
       </div>
       <div class="plan plan-pro">
-        <div class="pro-badge">Próximamente</div>
+        <div class="pro-badge">Recomendado</div>
         <h3 class="plan-name">PRO</h3>
-        <div class="plan-price">--</div>
+        <div class="plan-price-container">
+          <div id="price-monthly" class="plan-price active-price">
+            4 USD<span class="price-period">/ mes</span>
+          </div>
+          <div id="price-semestral" class="plan-price hidden-price">
+            10 USD<span class="price-period">/ 4 meses</span>
+            <div class="price-equivalent">Equivale a 2.50 USD / mes</div>
+          </div>
+        </div>
         <p class="plan-desc">Para estudiantes que quieren sacar el máximo provecho sin restricciones.</p>
         <ul class="plan-features">
           <li><span class="check">✓</span> Subidas de archivos ilimitadas</li>
@@ -66,6 +87,36 @@
       }
     });
   }
+
+  // Pricing toggle logic
+  const btnMonthly = document.getElementById('btn-monthly');
+  const btnSemestral = document.getElementById('btn-semestral');
+  const priceMonthly = document.getElementById('price-monthly');
+  const priceSemestral = document.getElementById('price-semestral');
+
+  if (btnMonthly && btnSemestral && priceMonthly && priceSemestral) {
+    btnMonthly.addEventListener('click', () => {
+      btnMonthly.classList.add('active');
+      btnSemestral.classList.remove('active');
+      
+      priceMonthly.classList.remove('hidden-price');
+      priceMonthly.classList.add('active-price');
+      
+      priceSemestral.classList.remove('active-price');
+      priceSemestral.classList.add('hidden-price');
+    });
+
+    btnSemestral.addEventListener('click', () => {
+      btnSemestral.classList.add('active');
+      btnMonthly.classList.remove('active');
+      
+      priceSemestral.classList.remove('hidden-price');
+      priceSemestral.classList.add('active-price');
+      
+      priceMonthly.classList.remove('active-price');
+      priceMonthly.classList.add('hidden-price');
+    });
+  }
 </script>
 
 <style>
@@ -79,6 +130,52 @@
     gap: 2rem;
     max-width: 900px;
     margin: 0 auto;
+  }
+
+  /* Billing Toggle Switcher */
+  .billing-toggle-container {
+    display: flex;
+    background: #f1f5f9;
+    padding: 0.35rem;
+    border-radius: 999px;
+    width: fit-content;
+    margin: 2rem auto 3rem auto;
+    border: 1px solid #e2e8f0;
+    gap: 0.25rem;
+  }
+
+  .billing-toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 0.65rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .billing-toggle-btn:hover {
+    color: var(--color-text);
+  }
+
+  .billing-toggle-btn.active {
+    background: white;
+    color: var(--color-primary-dark);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .discount-badge {
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 700;
   }
 
   .plan {
@@ -129,11 +226,62 @@
     margin-bottom: 0.5rem;
   }
 
+  .plan-price-container {
+    min-height: 5.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .plan-price {
     font-family: var(--font-title);
     font-size: 3rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .plan-price.hidden-price {
+    display: none;
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  .plan-price.active-price {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: priceFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .price-period {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin-left: 0.25rem;
+  }
+
+  .plan-pro .price-period {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .price-equivalent {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0.25rem;
+  }
+
+  @keyframes priceFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .plan-desc {
