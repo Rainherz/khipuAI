@@ -350,13 +350,13 @@ import Footer from '../components/Footer.astro';
     // Uso
     if (elUsageCaptures) elUsageCaptures.textContent = data.usage.captures.toLocaleString();
     if (elUsageMessages) elUsageMessages.textContent = data.usage.tutorMessages.toLocaleString();
-    if (elUsageExams) elUsageExams.textContent = data.usage.exams.toLocaleString();
+    if (elUsageExams) elUsageExams.textContent = data.usage.examsGenerated.toLocaleString();
 
     // Actualizar barras de gráfico
-    const maxUsage = Math.max(data.usage.captures, data.usage.tutorMessages, data.usage.exams);
+    const maxUsage = Math.max(data.usage.captures, data.usage.tutorMessages, data.usage.examsGenerated);
     document.querySelector('.captures-fill')!.setAttribute('style', `width: ${(data.usage.captures / maxUsage) * 100}%`);
     document.querySelector('.messages-fill')!.setAttribute('style', `width: ${(data.usage.tutorMessages / maxUsage) * 100}%`);
-    document.querySelector('.exams-fill')!.setAttribute('style', `width: ${(data.usage.exams / maxUsage) * 100}%`);
+    document.querySelector('.exams-fill')!.setAttribute('style', `width: ${(data.usage.examsGenerated / maxUsage) * 100}%`);
 
     // Listado de reseñas/repasos
     if (reviewsContainer) {
