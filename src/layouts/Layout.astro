@@ -33,6 +33,12 @@ const {
   <meta name="twitter:image" content={ogImage} />
 
   <!-- Privacy-friendly analytics by Plausible (proxied para evitar bloqueadores) -->
+  <!-- Stub: define window.plausible inmediatamente para que los clicks no fallen -->
+  <script is:inline>
+    window.plausible = window.plausible || function() {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+  </script>
   <script defer data-api="/api/event" src="/js/script.js"></script>
 </head>
 <body>
