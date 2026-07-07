@@ -1,0 +1,17 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+# Proxy para Plausible Analytics
+# Esto evita que los bloqueadores de anuncios bloqueen el script de Plausible
+[[redirects]]
+  from = "/js/script.js"
+  to = "https://plausible.io/js/pa-_p12laWz81EoX98YQG8Jd.js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/event"
+  to = "https://plausible.io/api/event"
+  status = 202
+  force = true
