@@ -55,7 +55,7 @@ import Footer from '../components/Footer.astro';
         <!-- Tarjeta 3: Descargas del APK -->
         <div class="metric-card glass-card">
           <div class="metric-header">
-            <span class="metric-label">Descargas APK (Plausible)</span>
+            <span class="metric-label">Descargas APK (GitHub)</span>
             <div class="metric-icon downloads-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </div>
@@ -174,13 +174,33 @@ import Footer from '../components/Footer.astro';
   const elUsageExams = document.getElementById('val-usage-exams');
   const reviewsContainer = document.getElementById('reviews-container');
 
-  // Cargar credenciales e intentar conexión automática
+  // Cargar datos al inicio: backend + GitHub en paralelo
   window.addEventListener('DOMContentLoaded', () => {
     const defaultUrl = import.meta.env.PUBLIC_API_URL || 'https://khipu-ai-backend-1013222499074.us-central1.run.app/v1/admin/metrics';
     const defaultToken = import.meta.env.PUBLIC_API_TOKEN || 'cambia-esto-por-un-string-aleatorio-de-64-chars';
 
     connectToAPI(defaultUrl, defaultToken);
+    fetchGitHubDownloads(); // Descargas reales desde GitHub Releases
   });
+
+  // Obtener descargas reales desde GitHub Releases API
+  async function fetchGitHubDownloads() {
+    if (elApkDownloads) elApkDownloads.textContent = '...';
+    try {
+      const res = await fetch('https://api.github.com/repos/khipu-ai-app/khipu-ai-android/releases', {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      });
+      if (!res.ok) throw new Error('GitHub API error');
+      const releases = await res.json();
+      const total = releases.reduce((sum: number, release: any) => {
+        return sum + release.assets.reduce((s: number, a: any) => s + a.download_count, 0);
+      }, 0);
+      if (elApkDownloads) elApkDownloads.textContent = total.toLocaleString();
+    } catch (err) {
+      console.error('No se pudo obtener descargas de GitHub:', err);
+      if (elApkDownloads) elApkDownloads.textContent = '--';
+    }
+  }
 
   // Función para conectarse a la API real
   async function connectToAPI(url: string, token: string) {
@@ -228,7 +248,8 @@ import Footer from '../components/Footer.astro';
       elConversionRate.textContent = `Tasa de conversión: ${rate}%`;
     }
 
-    if (elApkDownloads) elApkDownloads.textContent = data.totalDownloads.toLocaleString();
+    // Las descargas reales vienen de GitHub, no del backend
+    // fetchGitHubDownloads() ya se ejecutó al inicio en paralelo
     
     // Precisión SM-2
     if (elPrecision) {
